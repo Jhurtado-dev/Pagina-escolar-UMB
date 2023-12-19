@@ -1,0 +1,69 @@
+<mat-sidenav-container fxFill>
+    <mat-sidenav #snav>
+        <div class="sidebar-header">
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <img src="../../assets/img/MonteblancoLogo.jpeg" height="50">
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <h3 class="style-title">{{sessionModel.user.data.user_name}}</h3>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <h3 class="style-title">{{sessionModel.user.data.role}}</h3>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <h3 class="style-title">{{sessionModel.user.data.plant}}</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="sidebar-options" *ngIf="enable">
+            <mat-nav-list>
+                <a class="style-subtitle" *ngFor="let nav of fillerNav" mat-list-item [routerLink]="nav.route" (click)="snav.close()" (click)="changeViewNamw(nav.route)" routerLinkActive="active">
+                    <mat-icon style="padding-right: 1vw;">
+                        {{nav.icon}}
+                    </mat-icon>
+                    {{nav.name}}
+                </a>
+                
+                <a class="style-subtitle" mat-list-item routerLinkActive="active" (click)="logout()">
+                    <mat-icon style="padding-right: 1vw;">
+                        logout
+                    </mat-icon>
+                    Cerrar sesión</a>
+            </mat-nav-list>
+        </div>
+
+    </mat-sidenav>
+    <mat-sidenav-content style="background-color: white;">
+        <mat-toolbar>
+            <mat-toolbar-row style="background-color: white;">
+                <button mat-icon-button (click)="snav.toggle()" *ngIf="isHome">
+                <mat-icon>
+                  <span>menu</span>
+                </mat-icon>
+              </button>
+                <button mat-icon-button (click)="goBack()" *ngIf="!isHome">
+                <mat-icon>
+                  <span>arrow_back</span>
+                </mat-icon>
+              </button>
+                <img src="../../assets/img/MonteblancoLogo.jpeg" class="style-logo">
+                <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxFlex="20">
+                        <h2 class="style-title">{{ viewRoute}}</h2>
+                    </div>
+                    <!--<div fxLayout="column" fxFlex="50">
+                        <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" fxLayoutGap="1vw">
+                            <h1 class="style-title">{{ sessionModel.user.data.plant }}</h1>
+                        </div>
+                    </div>-->
+                    <div fxLayout="column" fxFlex="50">
+                        <div fxLayout="row" fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="1vw">
+                            <h2 class="style-title">{{ sessionModel.user.data.email }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

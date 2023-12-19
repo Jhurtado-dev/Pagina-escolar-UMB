@@ -1,0 +1,43 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div fxFill class="main-container" fxLayout="column" fxLayoutAlign="center">
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5rem" fxFill>
+            <div fxFlex>
+                <img src="../../assets/img/MonteblancoLogo.jpeg" style="width: 15rem">
+            </div>
+            <mat-card>
+                <form fxLayout="column" fxLayoutAlign="center" fxLayoutGap=".5rem" [formGroup]="loginForm" style="width: 20rem">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Correo electr&oacute;nico</mat-label>
+                        <input matInput autocomplete="off" required nonecomplete="off" name="email" type="text" formControlName="email" (keyup)="loadUserPlants($event)">
+                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                            Por favor ingresa un email v&aacute;lido
+                        </mat-error>
+                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                            Correo electrónico <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Seleccionar planta</mat-label>
+                        <mat-select matInput formControlName="plant" required matNativeControl placeholder="Seleccionar planta">
+                            <mat-option *ngFor="let plant of plants" [value]="plant">
+                                {{ plant.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput autocomplete="off" required autocomplete="off" name="password" type="password" formControlName="password">
+                        <mat-error *ngIf="">
+                            Contraseña <strong>requerida</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button class="style-raised-button" (click)="submitLogin()">Iniciar sesión
+          </button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

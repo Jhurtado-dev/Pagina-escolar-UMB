@@ -1,0 +1,32 @@
+<div fxLayout="column" fxLayoutGap="1rem">
+
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column">
+            <h3 class="style-title-child-page">{{title}} proveedor</h3>
+        </div>
+    </div>
+
+    <form [formGroup]="providerForm">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxFlex="50">
+                <span>Nombre del proveedor</span>
+            </div>
+            <mat-form-field fxFlex="50">
+                <input matInput autocomplete="off" type="text" oninput="this.value =  this.value.replace(/[^aA-zZ0-9ñáÁéÉíÍóÓúÚ&\ ]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" formControlName="name">
+            </mat-form-field>
+        </div>
+    </form>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <div>
+            <button mat-raised-button class="style-button-cancel" fxFlex (click)="dialogRef.close('cancel')">
+        Cancelar
+      </button>
+        </div>
+        <div>
+            <button mat-raised-button (click)="addOrUpdate()" class="style-raised-button" fxFlex [disabled]="providerForm.invalid">
+        {{this.data.providerData !== undefined ? 'Actualizar' : 'Guardar' }}
+      </button>
+        </div>
+    </div>
+</div>

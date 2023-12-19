@@ -1,0 +1,15 @@
+.style-raised-button {
+    height: 40px;
+    background-color: #00833d;
+    color: white;
+}
+.card-title{
+    color: white;
+    font-size: 25px;
+}
+.card-header-primary {
+    background-color: #005AA7;  /* Puedes cambiar este color según tus preferencias */
+    color: white;  /* Color del texto */
+    font-size: 28px;  /* Tamaño de la fuente */
+    /* Agrega cualquier otra propiedad CSS que desees personalizar */
+  }

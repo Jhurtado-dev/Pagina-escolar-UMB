@@ -1,0 +1,36 @@
+.sidebar-header {
+  width: 18rem;
+  padding: 1rem;
+}
+
+.top-container {
+  padding: 1rem
+}
+
+.style-logo {
+  width: 5vw;
+}
+
+.mat-button-toggle-checked {
+  box-shadow: 0 0 30px #000 !important;
+  border: 1px #000 solid !important;
+  border-radius: 5px !important;
+  background-color: #2881BF !important;
+  color: white;
+}
+
+.style-button-add-icon{
+  background-color: #2C77C5;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+ 	.btn-flotante {
+		font-size: 14px;
+		padding: 12px 20px;
+		bottom: 20px;
+		right: 20px;
+	}
+}
+
+

@@ -1,0 +1,43 @@
+/* header.component.css */
+
+header {
+    /* Agrega estilos según sea necesario para tu encabezado */
+    background-color: #fff; /* Ejemplo de color de fondo blanco */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Línea inferior del encabezado */
+  }
+  
+  .header-mobile {
+    /* Estilos para la versión móvil del encabezado */
+  }
+  
+  .header-main {
+    /* Estilos para el bloque principal del encabezado */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo img {
+    /* Estilos para el logotipo */
+    max-width: 100px; /* Ajusta según tus necesidades */
+  }
+  
+  ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin-right: 20px; /* Espaciado entre elementos del menú */
+  }
+  
+  a {
+    text-decoration: none;
+    color: #333; /* Color del texto del enlace */
+  }
+  
+  /* Agrega estilos adicionales según sea necesario */
+  

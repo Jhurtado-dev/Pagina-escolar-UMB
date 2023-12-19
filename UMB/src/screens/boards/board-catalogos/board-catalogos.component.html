@@ -1,0 +1,28 @@
+<div fxLayout="column" style="width: 100%;" class="general-padding-1" fxLayoutGap="1vw">
+    <div fxLayout="row" *ngIf="enable" fxFlex fxLayoutGap="1vw">
+        <mat-card fxLayout="column" fxFlex="25">
+            <mat-card-content>
+                <h3 class="style-title"> Usuarios</h3>
+                <h3 class="style-subtitle"> Catálogo de usuarios</h3>
+            </mat-card-content>
+            <mat-card-actions fxLayoutAlign="end center">
+                <button mat-mini-fab class="style-button-add-icon" routerLink="/emicelio/catalogos/users">
+          <mat-icon class="title-sidenav-color">keyboard_arrow_right</mat-icon>
+        </button>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card fxLayout="column" fxFlex="25">
+            <mat-card-content>
+                <h3 class="style-title"> Proveedores</h3>
+                <h3 class="style-subtitle">Catálogo de proveedores</h3>
+            </mat-card-content>
+            <mat-card-actions fxLayoutAlign="end center">
+                <button mat-mini-fab class="style-button-add-icon" routerLink="/emicelio/catalogos/provedores">
+          <mat-icon class="title-sidenav-color">keyboard_arrow_right</mat-icon>
+        </button>
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+</div>

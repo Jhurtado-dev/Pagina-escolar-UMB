@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import '~@angular/material/theming';
+@include mat-core();
+$admin-primary: mat-palette($mat-green);
+$admin-accent: mat-palette($mat-grey,
+200);
+$admin-warn: mat-palette($mat-red,
+A700);
+$admin-theme: mat-light-theme($admin-primary,
+$admin-accent,
+$admin-warn);
+$custom-typography: mat-typography-config( $font-family: 'Montserrat');
+@include angular-material-theme($admin-theme);
+@include mat-core($custom-typography);
+html,
+body {
+    height: 100%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    .style-title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .style-subtitle {
+        font-size: 15px;
+        font-weight: 300;
+    }
+    .style-title-child-page {
+        font-size: 20px;
+        font-weight: 800;
+    }
+    .style-button-cancel {
+        height: 40px;
+        background-color: lightgray;
+        color: black;
+    }
+    .style-button-warning {
+        height: 40px;
+        background-color: rgb(252, 168, 13);
+        color: rgb(255, 255, 255);
+    }
+    .general-padding-1 {
+        padding: 1rem;
+    }
+    .style-logo {
+        width: 3vw;
+        padding: 1rem;
+    }
+    .title-sidenav-color {
+        color: white;
+    }
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    #customers td,
+    #customers th {
+        padding: 8px;
+        text-align: center;
+    }
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: start;
+        color: white;
+    }
+    .mat-divider {
+        border-top-width: 2px;
+        border-color: black;
+    }
+}
+
+.custom-dialog-container .mat-dialog-container {
+    border: none;
+    padding: .5rem;
+}
+
+@media print {
+    app-main-board>* {
+        display: none;
+    }
+    app-main-board app-print-card {
+        display: block;
+    }
+}
+
+.error-snackbar {
+    background-color: #C8102E;
+    color: white;
+}
+
+.warning-snackbar {
+    background-color: #ffa500;
+    color: white;
+}
+
+.success-snackbar {
+    background-color: green;
+    color: white;
+}
+
+.info-snackbar {
+    background-color: #3574DC;
+    color: white;
+}
+
+.table-scroll-x {
+    overflow-x: auto;
+}
+
+.green {
+    color: green;
+}
+
+.mr-left {
+    margin-left: 64px
+}
