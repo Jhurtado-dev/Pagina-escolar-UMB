@@ -3,29 +3,29 @@
     <div fxLayout="column" fxLayoutAlign="center center">
         <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5rem" fxFill>
             <div fxFlex>
-                <img src="../../assets/img/MonteblancoLogo.jpeg" style="width: 15rem">
+                <img src="../../assets/img/logoUMB.png" style="width: 15rem">
             </div>
             <mat-card>
                 <form fxLayout="column" fxLayoutAlign="center" fxLayoutGap=".5rem" [formGroup]="loginForm" style="width: 20rem">
                     <mat-form-field appearance="outline">
-                        <mat-label>Correo electr&oacute;nico</mat-label>
+                        <mat-label>Usuario*</mat-label>
                         <input matInput autocomplete="off" required nonecomplete="off" name="email" type="text" formControlName="email" (keyup)="loadUserPlants($event)">
-                        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                            Por favor ingresa un email v&aacute;lido
+                        <mat-error *ngIf="usuarioFormControl.hasError('email') && !usuarioFormControl.hasError('required')">
+                            Por favor ingresa un email usuario valido
                         </mat-error>
-                        <mat-error *ngIf="emailFormControl.hasError('required')">
-                            Correo electrónico <strong>requerido</strong>
+                        <mat-error *ngIf="usuarioFormControl.hasError('required')">
+                            Usuario es <strong>requerido</strong>
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline">
+                    <!-- <mat-form-field appearance="outline">
                         <mat-label>Seleccionar planta</mat-label>
                         <mat-select matInput formControlName="plant" required matNativeControl placeholder="Seleccionar planta">
                             <mat-option *ngFor="let plant of plants" [value]="plant">
                                 {{ plant.name }}
                             </mat-option>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
                     <mat-form-field appearance="outline">
                         <mat-label>Contraseña</mat-label>

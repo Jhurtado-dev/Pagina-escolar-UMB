@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   public submitted = false;
   public error: { code: number, message: string } = null;
 
-  emailFormControl = new FormControl('', [
+  usuarioFormControl = new FormControl('', [
     Validators.required
   ]);
   passwordFormControl = new FormControl('', [
@@ -32,9 +32,8 @@ export class LoginComponent implements OnInit {
     Validators.required
   ]);
   loginForm = new FormGroup({
-    email: this.emailFormControl,
+    email: this.usuarioFormControl,
     password: this.passwordFormControl,
-    plant: this.plantFormControl
   });
 
   constructor(
@@ -100,17 +99,17 @@ export class LoginComponent implements OnInit {
 
   private correctLogin(data: SessionModel) {
     this.storageService.setCurrentSession(data);
-    this.router.navigate(['/emicelio']);
+    this.router.navigate(['/UMB']);
     // location.reload();
   }
 
-  async loadUserPlants(e){
+  /* async loadUserPlants(e){
     if(e.target.value !== ''){
       await this.getUserPlants(e.target.value);
     }
-  }
+  } */
 
-  getUserPlants(email: String){
+/*   getUserPlants(email: String){
     return new Promise((resolve) => {
       this.authenticationService.getUserPlants(email)
       .subscribe((responseModel: ResponseModel)=>{
@@ -125,7 +124,7 @@ export class LoginComponent implements OnInit {
         }
       })
     });
-  }
+  } */
 }
 
 

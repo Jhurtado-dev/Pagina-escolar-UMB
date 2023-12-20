@@ -2,15 +2,10 @@ import { DataBaseModel } from "./data_base.model";
 
 export class UserModel extends DataBaseModel {
   data: {
-    name: string;
-    email: string;
+    id_user: number;
     user_name: string;
-    password: string;
     id_role: number;
-    role: string;
-    id_plant: string;
-    created_by: string;
-    modified_by: string;
+    name_role: string;
   };
 
 
@@ -20,15 +15,10 @@ export class UserModel extends DataBaseModel {
       this.data = data;
     } else {
       this.data = {
-        name: '',
-        email: '',
+        id_user: 0,
         user_name: '',
-        password: '',
         id_role: 0,
-        role: '',
-        id_plant: '',
-        created_by: '',
-        modified_by: ''
+        name_role: '',
       };
     }
   }

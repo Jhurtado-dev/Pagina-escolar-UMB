@@ -1,17 +1,15 @@
-import mysql from 'promise-mysql';
-
+import sql, { ConnectionPool } from 'mssql';
 import keys from './keys';
 
-const pool = mysql.createPool(keys.database);
+const pool = new ConnectionPool(keys.database);
 
-pool.getConnection()
-    .then(connection => {
-        pool.releaseConnection(connection);
-        console.log('DB Fresco is connected');
-    }).catch(function(e) {
-        console.log('Error: ', e);
-        throw e;
+pool.connect()
+    .then(() => {
+        console.log('DB School is connected');
     })
-    ;
+    .catch((error) => {
+        console.error('Error connecting to the database:', error);
+        process.exit(1);
+    });
 
 export default pool;

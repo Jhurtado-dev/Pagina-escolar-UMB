@@ -119,8 +119,6 @@ import { LandingModule } from 'src/screens/landingPage/landing/landing.module';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    LandingModule
-
     
   ],
   providers: [

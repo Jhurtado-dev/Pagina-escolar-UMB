@@ -10,15 +10,10 @@ class UserModel extends data_base_model_1.DataBaseModel {
         }
         else {
             this.data = {
-                name: '',
-                email: '',
+                id_user: 0,
                 user_name: '',
-                password: '',
                 id_role: 0,
-                role: '',
-                id_plant: '',
-                created_by: '',
-                modified_by: ''
+                name_role: '',
             };
         }
     }
