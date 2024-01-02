@@ -11,6 +11,8 @@ class UsersRoutes {
 
     config(): void {
         this.router.get('/signin', usersController.signIn);
+        this.router.get('/student/info', usersController.studentInfo,)
+        this.router.get('/student/schedule', usersController.studentSchedule,)
     }
 }
 

@@ -2,157 +2,33 @@
   <div class="container-fluid">
     <div class="card">
       <div class="card-header card-header-primary text-center">
-        <h4 class="card-title">RECEPCIÓN DE EMBARQUES</h4>
+        <h4 class="card-title">Consulta de calificaciones</h4>
       </div>
       <div class="card-body">
-        <form [formGroup]="shipmentsForm">
-          <div class="row">
-            <div class="col">
-              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Planta</span>
-                  </div>
-                  <mat-form-field appearance="outline">
-                    <mat-select formControlName="plant">
-                      <mat-option *ngFor="let plant of plants" [value]="plant">
-                        {{ plant.name }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Viaje</span>
-                  </div>
-                  <mat-form-field fxFlex="50">
-                    <input matInput autocomplete="off" type="text"
-                      oninput="this.value = this.value.replace(/[^0-9.,]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
-                      formControlName="trip" style="text-align: center" />
-                  </mat-form-field>
-                </div>
-              </div>
-
-              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Fecha de registro</span>
-                  </div>
-                  <mat-form-field fxFlex="50">
-                    <input matInput [matDatepicker]="picker" formControlName="date" />
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                </div>
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Factura</span>
-                  </div>
-                  <mat-form-field fxFlex="50">
-                    <input matInput autocomplete="off" type="text" formControlName="bill" style="text-align: center" />
-                  </mat-form-field>
-                </div>
-              </div>
-
-              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Placas</span>
-                  </div>
-                  <mat-form-field fxFlex="50">
-                    <input matInput autocomplete="off" type="text" formControlName="plates"
-                      style="text-align: center" />
-                  </mat-form-field>
-                </div>
-
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Destino</span>
-                  </div>
-                  <mat-form-field fxFlex="50">
-                    <input matInput autocomplete="off" type="text" formControlName="destination"
-                      style="text-align: center" />
-                  </mat-form-field>
-                </div>
-              </div>
-
-              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Chofer</span>
-                  </div>
-                  <mat-form-field appearance="outline">
-                    <mat-select formControlName="driver">
-                      <mat-option *ngFor="let driver of drivers" [value]="driver">
-                        {{ driver.name_chofer + " " + driver.lastName_user }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="40">
-                    <span>Temperatura Transporte</span>
-                  </div>
-                  <mat-form-field fxFlex="40">
-                    <input matInput autocomplete="off" type="text"
-                      oninput="this.value = this.value.replace(/[^0-9.,]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
-                      formControlName="temperature" style="text-align: center" />
-                    <mat-label>C°</mat-label>
-                  </mat-form-field>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <div class="col">
-                  <div class="text-center">
-                    <h2 card-title>Condiciones del transporte</h2>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Check1</span>
-                  </div>
-                  <mat-form-field fxFlex="50">
-                    <input matInput autocomplete="off" type="text" formControlName="check1"
-                      style="text-align: center" />
-                  </mat-form-field>
-                </div>
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Check2</span>
-                  </div>
-                  <mat-form-field fxFlex="50">
-                    <input matInput autocomplete="off" type="text" formControlName="check2"
-                      style="text-align: center" />
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col" fxLayoutGap="10px">
-                  <div fxFlex="30">
-                    <span>Comentarios</span>
-                  </div>
-                  <mat-form-field fxFlex="50">
-                    <input matInput autocomplete="off" type="text" formControlName="coment"
-                      style="text-align: center" />
-                  </mat-form-field>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+        <!-- Display grades using Angular's *ngFor directive -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Grupo</th>
+              <th>Materia</th>
+              <th>Calificacion</th>
+              <th>Maestro</th>
+              <th>Asistencia</th>
+              <!-- Agrega las demás columnas según tus necesidades -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let grade of studentGrades">
+              <td>{{ grade.group_name }}</td>
+              <td>{{ grade.subject_name }}</td>
+              <td>{{grade.score}}</td>
+              <td>{{grade.name}}</td>
+              <td>{{ grade.attendance }}</td>
+              <!-- Agrega las demás celdas según tus necesidades -->
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-
-    <!-- Botón Iniciar -->
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
-      <button mat-raised-button class="style-raised-button" (click)="createTransport()" [routerLink]="'/emicelio/pallet'" [disabled]="shipmentsForm.invalid">
-        Iniciar
-      </button>
     </div>
   </div>
 </div>

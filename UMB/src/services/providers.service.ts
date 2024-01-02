@@ -24,7 +24,7 @@ export class ProvidersService {
   }
 
   create(providerModel: ProviderModel){
-    providerModel.data.created_by = this.sessionData.user.data.email;
+    providerModel.data.created_by = this.sessionData.user.data.role_name;
     return this.http.post(`${this.basePath}/`, providerModel.data, this.httpOptions);
   }
 
@@ -32,7 +32,7 @@ export class ProvidersService {
     if (action === 'delete') {
       providerModel.data.status = 1;
     }
-    providerModel.data.modified_by = this.sessionData.user.data.email;
+    providerModel.data.modified_by = this.sessionData.user.data.role_name;
     return this.http.put(`${this.basePath}/update/${providerModel.id}`, providerModel.data, this.httpOptions);
   }
 }

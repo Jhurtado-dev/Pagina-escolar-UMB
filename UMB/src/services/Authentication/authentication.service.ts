@@ -10,11 +10,11 @@ export class AuthenticationService {
 
   private basePath = '/api/users';
 
-  login(email:string,password:string){
-    return this.http.get(`${environment.host}${this.basePath}/signin/${email}&${password}`)
+  login(email: string, password: string) {
+    return this.http.get(`${environment.host}${this.basePath}/signin?email=${email}&password=${password}`);
   }
-
+  
   getUserPlants(email:String){
-    return this.http.get(`${environment.host}${this.basePath}/getUserPlants/${email}`)
+    return this.http.get(`${environment.host}${this.basePath}/getUserPlants/${email}`);
   }
 }

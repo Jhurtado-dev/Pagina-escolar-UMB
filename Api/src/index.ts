@@ -12,13 +12,11 @@ import driversRoutes from './routes/drivers.routes';
 
 class Api {
     public app: Application;
-    private pool: ConnectionPool;
 
     constructor() {
         this.app = express();
         this.config();
         this.routes();
-        this.pool = new sql.ConnectionPool(keys.database);
     }
 
     config(): void {
@@ -38,15 +36,7 @@ class Api {
     }
 
     async start(): Promise<void> {
-        // Connect to the SQL Server before starting the server
-        try {
-            await this.pool.connect();
-            console.log('DB School is connected');
-        } catch (error) {
-            console.error('Error connecting to the database:', error);
-            process.exit(1);
-        }
-
+   
         this.app.listen(this.app.get('port'), () => {
             console.log('Server on port', this.app.get('port'));
         });

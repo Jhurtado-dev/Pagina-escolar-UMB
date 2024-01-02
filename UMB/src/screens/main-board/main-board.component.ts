@@ -13,7 +13,7 @@ import { SessionModel } from 'src/models/session.model';
 export class MainBoardComponent implements OnInit {
 
   sessionModel: SessionModel = JSON.parse(localStorage.getItem('userCompost'));
-  enable = true;
+  menu = 0;
   isHome = false;
   viewRoute = '';
 
@@ -23,11 +23,22 @@ export class MainBoardComponent implements OnInit {
   fecha;
 
   fillerNav = [
-    { icon: 'nature', name: 'Registro de tarimas', route: 'home' },
-    { icon: 'assessment', name: 'Reportes', route: 'reportes' },
+    { icon: 'nature', name: 'Calificaciones', route: 'home' },
+    { icon: 'nature', name: 'Asistencias', route: 'asistencias' },
+    { icon: 'assessment', name: 'Horario', route: 'horario' },
     { icon: 'menu_book', name: 'Catálogos', route: 'catalogos' },
   ];
 
+  fillerNavS = [
+    { icon: 'nature', name: 'Calificaciones', route: 'home' },
+    { icon: 'assessment', name: 'Horario', route: 'horario' },
+  ];
+  fillerNavP = [
+    { icon: 'nature', name: 'Calificaciones', route: 'home' },
+    { icon: 'nature', name: 'Asistencias', route: 'asistencias' },
+    { icon: 'assessment', name: 'Horario', route: 'horario' },
+    { icon: 'menu_book', name: 'Catálogos', route: 'catalogos' },
+  ];
  
   constructor(
     private storageService: StorageService,
@@ -36,6 +47,7 @@ export class MainBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+    this.validPlant();
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event) => {
       this.isHome = this.router.url.split('/', 5).length === 3;
     });
@@ -46,7 +58,22 @@ export class MainBoardComponent implements OnInit {
     this.isHome = (this.router.url === '/emicelio/home' || this.router.url === '/emicelio/reportes' || this.router.url === '/emicelio/catalogos');
   }
 
-
+  validPlant(){
+    switch (this.sessionModel.user.data.role_name) {
+      case 'Estudiante':
+        this.menu = 1;
+        break;
+      case 'Profesor':
+        this.menu = 2;
+        break;
+        case 'Administrador':
+          this.menu = 0;
+          break;
+    
+      default:
+        break;
+    }
+  }
 
   goBack() {
     const arrayRouteName = this.router.url.split('/');
@@ -101,7 +128,7 @@ export class MainBoardComponent implements OnInit {
 
   changeViewNamw(route) {
     let moduleTitle = '';
-      moduleTitle = 'Registro de Tarimas';
+      moduleTitle = 'Calificaciones';
     if (route === '') {
       const nameurl = this.router.url.split('/');
       route = nameurl[2];
@@ -110,13 +137,16 @@ export class MainBoardComponent implements OnInit {
       case route.includes('home'): this.viewRoute = moduleTitle;
         break;
 
-      case route.includes('registrodetarimas'): this.viewRoute = 'Registro de tarimas';
+      case route.includes('asistencias'): this.viewRoute = 'Asistencias';
         break;
 
-      case route.includes('catalogos'): this.viewRoute = 'Catálogos';
+        case route.includes('horario'): this.viewRoute = 'Horario';
+        break;
+        
+      case route.includes('catalogos'): this.viewRoute = 'Alumnos';
         break;
 
-      case route.includes('reportes'): this.viewRoute = 'Reportes';
+      case route.includes('reportes'): this.viewRoute = 'Horario de clases';
         break;
     }
   }

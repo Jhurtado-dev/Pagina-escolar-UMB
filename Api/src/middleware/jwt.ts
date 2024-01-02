@@ -13,9 +13,9 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
         return res.status(401).json({message: 'Unauthorized'})
     }
 
-    const {userId, email} = jwtPayload;
+    const {userId, userRole} = jwtPayload;
 
-    const newToken = jwt.sign({userId, email}, config.jwtCompost);
+    const newToken = jwt.sign({userId, userRole}, config.jwtCompost);
 
     res.setHeader('token', newToken);
     next();

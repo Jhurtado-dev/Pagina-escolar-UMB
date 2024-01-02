@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     const authenticate = this.storageService.isAuthenticated();
     if (authenticate) {
       if (this.router.url === '/login' || this.router.url === '/') {
-        this.router.navigate(['/emicelio']);
+      this.router.navigate(['/emicelio']);
       }
     }
   }
@@ -63,21 +63,19 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authenticationService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
         (responseModel: ResponseModel) => {
+          console.log('Response Model:', responseModel);
           if (responseModel.data.message !== 'error') {
             const sessionData = new SessionModel();
             const userModel = new UserModel();
-            userModel.id = responseModel.data.response.userData.id;
-            userModel.data.name = responseModel.data.response.userData.name;
+            userModel.id = responseModel.data.response.userData.id_user;
+            userModel.data.id_user = responseModel.data.response.userData.id_user;
             userModel.data.user_name = responseModel.data.response.userData.user_name;
-            userModel.data.email = responseModel.data.response.userData.email;
             userModel.data.id_role = responseModel.data.response.userData.id_role;
-            userModel.data.role = responseModel.data.response.userData.role;
-            userModel.data.id_plant = responseModel.data.response.userData.id_plant;
-            userModel.data.id_plant = this.plantFormControl.value.id_plant;
-            userModel.data.plant = this.plantFormControl.value.name;
+            userModel.data.role_name = responseModel.data.response.userData.role_name;
+            
             sessionData.user = userModel;
             sessionData.token = responseModel.data.response.token;
-            location.reload();
+            //location.reload();
             this.correctLogin(sessionData);
           } else {
             this.isLoading = false;
@@ -100,7 +98,7 @@ export class LoginComponent implements OnInit {
   private correctLogin(data: SessionModel) {
     this.storageService.setCurrentSession(data);
     this.router.navigate(['/UMB']);
-    // location.reload();
+    location.reload();
   }
 
   /* async loadUserPlants(e){

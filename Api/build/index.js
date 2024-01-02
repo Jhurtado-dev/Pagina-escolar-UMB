@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
-const mssql_1 = __importDefault(require("mssql")); // Update this line
-const keys_1 = __importDefault(require("./keys"));
 const users_routes_1 = __importDefault(require("./routes/users.routes"));
 const transport_routes_1 = __importDefault(require("./routes/transport.routes"));
 const pallet_routes_1 = __importDefault(require("./routes/pallet.routes"));
@@ -27,7 +25,6 @@ class Api {
         this.app = (0, express_1.default)();
         this.config();
         this.routes();
-        this.pool = new mssql_1.default.ConnectionPool(keys_1.default.database);
     }
     config() {
         this.app.set('port', process.env.PORT || 3000);
@@ -45,15 +42,6 @@ class Api {
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
-            // Connect to the SQL Server before starting the server
-            try {
-                yield this.pool.connect();
-                console.log('DB School is connected');
-            }
-            catch (error) {
-                console.error('Error connecting to the database:', error);
-                process.exit(1);
-            }
             this.app.listen(this.app.get('port'), () => {
                 console.log('Server on port', this.app.get('port'));
             });

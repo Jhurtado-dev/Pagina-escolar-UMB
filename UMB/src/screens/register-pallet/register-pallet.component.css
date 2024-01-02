@@ -1,3 +1,13 @@
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+.card-header-primary {
+    background-color: #78BE20;  /* Puedes cambiar este color según tus preferencias */
+    color: white;  /* Color del texto */
+    font-size: 28px;  /* Tamaño de la fuente */
+    /* Agrega cualquier otra propiedad CSS que desees personalizar */
+  }
+
 .style-raised-button {
     height: 40px;
     background-color: #00833d;
@@ -7,9 +17,29 @@
     color: white;
     font-size: 25px;
 }
-.card-header-primary {
-    background-color: #005AA7;  /* Puedes cambiar este color según tus preferencias */
-    color: white;  /* Color del texto */
-    font-size: 28px;  /* Tamaño de la fuente */
-    /* Agrega cualquier otra propiedad CSS que desees personalizar */
+.ma-top {
+    margin-top: -163px;
+}
+
+.t-dialog {
+    color: #005929;
+    margin-left: 56px;
+}
+
+mat-tab-group {
+    max-width: 40vw;
+}
+.alert-danger {
+    color: red;
+    background-color: rgba(250, 160, 160, 0.884);
+    padding: 10px;
   }
+  
+  .example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  .my-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 

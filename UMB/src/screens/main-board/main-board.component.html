@@ -2,20 +2,51 @@
     <mat-sidenav #snav>
         <div class="sidebar-header">
             <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                <img src="../../assets/img/MonteblancoLogo.jpeg" height="50">
+                <img src="../../assets/img/colibri.png" height="150">
             </div>
             <div fxLayout="row" fxLayoutAlign="center center">
                 <h3 class="style-title">{{sessionModel.user.data.user_name}}</h3>
             </div>
             <div fxLayout="row" fxLayoutAlign="center center">
-                <h3 class="style-title">{{sessionModel.user.data.role}}</h3>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="center center">
-                <h3 class="style-title">{{sessionModel.user.data.plant}}</h3>
+                <h3 class="style-title">{{sessionModel.user.data.role_name}}</h3>
             </div>
         </div>
         <hr>
-        <div class="sidebar-options" *ngIf="enable">
+        <div class="sidebar-options" *ngIf="menu === 1">
+            <mat-nav-list>
+                <a class="style-subtitle" *ngFor="let nav of fillerNavS" mat-list-item [routerLink]="nav.route" (click)="snav.close()" (click)="changeViewNamw(nav.route)" routerLinkActive="active">
+                    <mat-icon style="padding-right: 1vw;">
+                        {{nav.icon}}
+                    </mat-icon>
+                    {{nav.name}}
+                </a>
+                
+                <a class="style-subtitle" mat-list-item routerLinkActive="active" (click)="logout()">
+                    <mat-icon style="padding-right: 1vw;">
+                        logout
+                    </mat-icon>
+                    Cerrar sesión</a>
+            </mat-nav-list>
+        </div>
+
+        <div class="sidebar-options" *ngIf="menu === 2">
+            <mat-nav-list>
+                <a class="style-subtitle" *ngFor="let nav of fillerNavP" mat-list-item [routerLink]="nav.route" (click)="snav.close()" (click)="changeViewNamw(nav.route)" routerLinkActive="active">
+                    <mat-icon style="padding-right: 1vw;">
+                        {{nav.icon}}
+                    </mat-icon>
+                    {{nav.name}}
+                </a>
+                
+                <a class="style-subtitle" mat-list-item routerLinkActive="active" (click)="logout()">
+                    <mat-icon style="padding-right: 1vw;">
+                        logout
+                    </mat-icon>
+                    Cerrar sesión</a>
+            </mat-nav-list>
+        </div>
+
+        <div class="sidebar-options" *ngIf="menu === 0">
             <mat-nav-list>
                 <a class="style-subtitle" *ngFor="let nav of fillerNav" mat-list-item [routerLink]="nav.route" (click)="snav.close()" (click)="changeViewNamw(nav.route)" routerLinkActive="active">
                     <mat-icon style="padding-right: 1vw;">
@@ -31,7 +62,6 @@
                     Cerrar sesión</a>
             </mat-nav-list>
         </div>
-
     </mat-sidenav>
     <mat-sidenav-content style="background-color: white;">
         <mat-toolbar>
@@ -46,7 +76,7 @@
                   <span>arrow_back</span>
                 </mat-icon>
               </button>
-                <img src="../../assets/img/MonteblancoLogo.jpeg" class="style-logo">
+                <img src="../../assets/img/logoUMB.png" height="60" style="margin:20px;">
                 <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center">
                     <div fxLayout="column" fxFlex="20">
                         <h2 class="style-title">{{ viewRoute}}</h2>
@@ -56,11 +86,11 @@
                             <h1 class="style-title">{{ sessionModel.user.data.plant }}</h1>
                         </div>
                     </div>-->
-                    <div fxLayout="column" fxFlex="50">
+                  <!--   <div fxLayout="column" fxFlex="50">
                         <div fxLayout="row" fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="1vw">
                             <h2 class="style-title">{{ sessionModel.user.data.email }}</h2>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>

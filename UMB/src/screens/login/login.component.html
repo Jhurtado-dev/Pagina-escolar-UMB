@@ -9,7 +9,7 @@
                 <form fxLayout="column" fxLayoutAlign="center" fxLayoutGap=".5rem" [formGroup]="loginForm" style="width: 20rem">
                     <mat-form-field appearance="outline">
                         <mat-label>Usuario*</mat-label>
-                        <input matInput autocomplete="off" required nonecomplete="off" name="email" type="text" formControlName="email" (keyup)="loadUserPlants($event)">
+                        <input matInput autocomplete="off" required nonecomplete="off" name="email" type="text" formControlName="email">
                         <mat-error *ngIf="usuarioFormControl.hasError('email') && !usuarioFormControl.hasError('required')">
                             Por favor ingresa un email usuario valido
                         </mat-error>

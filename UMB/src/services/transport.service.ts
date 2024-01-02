@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SessionModel } from 'src/models/session.model';
 import { TransportModel } from 'src/models/transport.model';
+import { UserModel } from 'src/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,8 @@ import { TransportModel } from 'src/models/transport.model';
 export class TransportService {
 
   constructor(private http:HttpClient) { }
-  private path = `${environment.host}/api/transport`;
+  private path = `${environment.host}/api/users/student`;
   private sessionData: SessionModel = JSON.parse(localStorage.getItem('userCompost'));
-  private idPlant = this.sessionData.user.data.id_plant;
   private userName = this.sessionData.user.data.user_name;
   private idUser = this.sessionData.user.id;
   private httpOptions = {
@@ -21,13 +21,14 @@ export class TransportService {
     })
   };
 
-  createTransport(trasnportModel : TransportModel){
-    trasnportModel.data.created_by = this.userName;
-    trasnportModel.data.id_plant =this.idPlant;
-    return this.http.post(`${this.path}/createTransport`, trasnportModel.data, this.httpOptions);
+
+  getGrades(){
+   const idUser = this.sessionData.user.data.id_user;
+    return this.http.get(`${this.path}/info?userId=${idUser}`, this.httpOptions);
   }
 
-  getTransport(){
-    return this.http.get(`${this.path}/getTransport`, this.httpOptions);
-  }
+  getSchedule(){
+    const idUser = this.sessionData.user.data.id_user;
+     return this.http.get(`${this.path}/schedule?userId=${idUser}`, this.httpOptions);
+   }
 }

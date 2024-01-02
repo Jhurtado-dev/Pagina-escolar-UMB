@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       // Boards
       { path: 'home' , component: ReceptionShipmentsComponent},
-      {path:'pallet',component:RegisterPalletComponent},
+      {path:'horario',component:RegisterPalletComponent},
       { path: 'catalogos' , component: BoardCatalogosComponent},
       { path: 'reportes' , component: BoardReportComponent},
          // Catalogs

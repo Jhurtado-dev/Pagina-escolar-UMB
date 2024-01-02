@@ -16,12 +16,14 @@ const database_1 = __importDefault(require("../database"));
 const response_model_1 = require("../models/response.model");
 const user_model_1 = require("../models/user.model");
 const config_1 = __importDefault(require("../config/config"));
+const studentInfo_model_1 = require("../models/studentInfo.model");
 const jwt = require('jsonwebtoken');
 class UsersController {
     signIn(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const responseModel = new response_model_1.ResponseModel();
             const userModel = new user_model_1.UserModel();
+            const studentInfoModel = new studentInfo_model_1.StudentInfoModel();
             responseModel.data.date = new Date().toDateString();
             responseModel.data.description = 'User[signIn]';
             try {
@@ -31,13 +33,73 @@ class UsersController {
                 const user = result.recordset[0];
                 if (user) {
                     userModel.data = user;
-                    const token = jwt.sign({ userId: userModel.data.user_name }, config_1.default.jwtCompost);
+                    const token = jwt.sign({ userId: userModel.data.user_name, userRole: userModel.data.role_name }, config_1.default.jwtCompost);
                     responseModel.data.response = { token, userData: userModel.data };
                     res.json(responseModel);
                 }
                 else {
                     responseModel.data.message = 'error';
                     responseModel.data.response = { description: 'Datos Incorrectos' };
+                    res.json(responseModel);
+                }
+            }
+            catch (err) {
+                responseModel.data.message = 'error';
+                responseModel.data.response = err;
+                console.log(responseModel.data.date, ' :' + responseModel.data.description, ' :' + err);
+                res.status(403).json(responseModel);
+            }
+        });
+    }
+    studentInfo(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const responseModel = new response_model_1.ResponseModel();
+            const studentInfoModel = new studentInfo_model_1.StudentInfoModel();
+            responseModel.data.date = new Date().toDateString();
+            responseModel.data.description = 'User[studentInfo]';
+            try {
+                const { userId } = req.query;
+                // Ejecutar el procedimiento almacenado
+                const result = yield database_1.default.query `EXEC GetStudentGrades @userID = ${userId}`;
+                const user = [] = result.recordset;
+                if (user) {
+                    studentInfoModel.data = user;
+                    responseModel.data.response = { userData: studentInfoModel.data };
+                    res.json(responseModel);
+                }
+                else {
+                    responseModel.data.message = 'error';
+                    responseModel.data.response = { description: 'Usuario no encontrado' };
+                    res.json(responseModel);
+                }
+            }
+            catch (err) {
+                responseModel.data.message = 'error';
+                responseModel.data.response = err;
+                console.log(responseModel.data.date, ' :' + responseModel.data.description, ' :' + err);
+                res.status(403).json(responseModel);
+            }
+        });
+    }
+    studentSchedule(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const responseModel = new response_model_1.ResponseModel();
+            const studentInfoModel = new studentInfo_model_1.StudentInfoModel();
+            responseModel.data.date = new Date().toDateString();
+            responseModel.data.description = 'User[studentSchedule]';
+            try {
+                const { userId } = req.query;
+                // Ejecutar el procedimiento almacenado
+                const result = yield database_1.default.query `EXEC GetSchedule @userID = ${userId}`;
+                const user = [] = result.recordset;
+                if (user) {
+                    studentInfoModel.data = user;
+                    responseModel.data.response = { userData: studentInfoModel.data };
+                    res.json(responseModel);
+                }
+                else {
+                    responseModel.data.message = 'error';
+                    responseModel.data.response = { description: 'Usuario no encontrado' };
                     res.json(responseModel);
                 }
             }

@@ -12,6 +12,8 @@ class UsersRoutes {
     }
     config() {
         this.router.get('/signin', users_controller_1.default.signIn);
+        this.router.get('/student/info', users_controller_1.default.studentInfo);
+        this.router.get('/student/schedule', users_controller_1.default.studentSchedule);
     }
 }
 const usersRoutes = new UsersRoutes();
