@@ -58,6 +58,8 @@ import { ReceptionShipmentsComponent } from 'src/screens/reception-shipments/rec
 import { RegisterPalletComponent } from 'src/screens/register-pallet/register-pallet.component';
 import { AuthenticationService } from 'src/services/Authentication/authentication.service';
 import { LandingModule } from 'src/screens/landingPage/landing/landing.module';
+import { RegisterAttendanceComponent } from 'src/screens/register-attendance/register-attendance.component';
+import { StudentFormComponent } from 'src/screens/student-form/student-form.component';
 
 
 
@@ -75,7 +77,10 @@ import { LandingModule } from 'src/screens/landingPage/landing/landing.module';
     BoardReportComponent,
 
     ReceptionShipmentsComponent,
-    RegisterPalletComponent
+    RegisterPalletComponent,
+
+    RegisterAttendanceComponent,
+    StudentFormComponent
     
   ],
   imports: [

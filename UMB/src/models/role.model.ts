@@ -2,7 +2,7 @@ import { DataBaseModel } from "./data_base.model";
 
 export class RoleModel extends DataBaseModel {
   data: {
-    name: string;
+    group_name: string;
   };
 
   constructor(id: string = '', data?: any){
@@ -11,7 +11,7 @@ export class RoleModel extends DataBaseModel {
       this.data = data;
     } else {
       this.data = {
-        name: ''
+        group_name: ''
       }
     }
   }

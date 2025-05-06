@@ -16,7 +16,7 @@ import { ResponseModel } from 'src/models/response.model';
 export class LoginComponent implements OnInit {
 
   plants = []
-
+  sessionModel: SessionModel = JSON.parse(localStorage.getItem('userCompost'));
   isLoading = false;
   public submitted = false;
   public error: { code: number, message: string } = null;
@@ -49,9 +49,14 @@ export class LoginComponent implements OnInit {
 
   setAuthListener() {
     const authenticate = this.storageService.isAuthenticated();
+    const userRole = this.sessionModel.user.data.role_name
     if (authenticate) {
       if (this.router.url === '/login' || this.router.url === '/') {
-      this.router.navigate(['/emicelio']);
+        if (userRole === 'Profesor') {
+          this.router.navigate(['/emicelio/adminStudent']);
+        }else{
+          this.router.navigate(['/emicelio']);
+        }
       }
     }
   }

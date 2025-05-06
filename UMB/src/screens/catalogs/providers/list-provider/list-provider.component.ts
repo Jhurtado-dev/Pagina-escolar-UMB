@@ -8,6 +8,10 @@ import { ProvidersService } from 'src/services/providers.service';
 import { FormProviderComponent } from '../form-provider/form-provider.component';
 import { ResponseModel } from 'src/models/response.model';
 import { SessionModel } from 'src/models/session.model';
+import { UserService } from 'src/services/user.service';
+import { UserModel } from 'src/models/user.model';
+import { RoleModel } from 'src/models/role.model';
+import { RoleServices } from 'src/services/role.service';
 
 @Component({
   selector: 'app-list-provider',
@@ -17,17 +21,19 @@ import { SessionModel } from 'src/models/session.model';
 export class ListProviderComponent implements OnInit {
 
   sessionModel: SessionModel = JSON.parse(localStorage.getItem('userCompost'));
-  providers: ProviderModel[] = [];
+  teachers: UserModel[] = [];
+  Groups = [];
   isLoading = true;
 
   constructor(
     public dialog: MatDialog,
-    private providersService: ProvidersService,
+    private userService: UserService,
+    private roleServices: RoleServices,
     private snackBar: MatSnackBar,
   ) { }
 
-  dataSource = new MatTableDataSource(this.providers);
-  displayedColumns = ['id', 'name', 'edit', 'delete'];
+  dataSource = new MatTableDataSource(this.teachers);
+  displayedColumns = ['id', 'user' , 'name', 'group', 'phone', 'edit','delete'];
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
@@ -37,9 +43,28 @@ export class ListProviderComponent implements OnInit {
       return travel.data.name.toLowerCase().includes(filter);
     };
     this.dataSource.paginator = this.paginator;
-    this.dataSource.paginator._intl.itemsPerPageLabel = 'Proveedores por vista';
+    this.dataSource.paginator._intl.itemsPerPageLabel = 'Maestros por vista';
     this.loadProviders();
+    this.loadGroups();
   }
+
+  loadGroups() {
+    this.Groups = [];
+    this.roleServices.getAll().subscribe(
+      (responseModel: ResponseModel ) => {
+        if(responseModel.data.response.groups.length > 0){
+          responseModel.data.response.groups.forEach(roleData => {
+            const groupModel = new RoleModel();
+            groupModel.id = roleData.id_group;
+            groupModel.data.group_name = roleData.group_name ;
+            this.Groups.push(groupModel);
+            console.log(this.Groups);
+          });
+        }
+      }
+    );
+  }
+  
 
   filter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -49,19 +74,16 @@ export class ListProviderComponent implements OnInit {
   }
 
   loadProviders() {
-    this.providers = [];
-    this.providersService.getAll().subscribe(
+    this.teachers = [];
+    this.userService.getAllTeachers().subscribe(
       (responseModel: ResponseModel) => {
-        if(responseModel.data.response.length > 0){
-          responseModel.data.response.forEach(providerData => {
-            const providerModel = new ProviderModel();
-            providerModel.id = providerData.id;
-            providerModel.data.name = providerData.name;
-            providerModel.data.status = providerData.status;
-            this.providers.push(providerModel);
-          });
-          this.dataSource.data = this.providers;
-          this.isLoading = false;
+        console.log(responseModel.data.response.userData);
+        
+        if(responseModel.data.response.userData.length > 0){
+        const teachers = responseModel.data.response
+        this.dataSource =teachers.userData; 
+        console.log(this.dataSource);
+        
         }else {
           this.dataSource.data = [];
           this.isLoading = false;
@@ -70,26 +92,30 @@ export class ListProviderComponent implements OnInit {
     );
   }
 
-  deleteRow(provider: ProviderModel) {
-    this.providersService.update(provider,'delete').subscribe(
+  deleteRow(id_user) {
+    let error = false;
+    this.userService.delete(id_user).subscribe(
       () => {
-        this.showMessage('El proveedor ' + provider.data.name + ' se ha eliminado correctamente', 'success-snackbar');
-        this.loadProviders();
+          this.showMessage('El usuario se ha eliminado correctamente', 'success-snackbar');
+          this.loadProviders();
       },
       (err) => {
-        this.showMessage('Error de la base de datos', 'error-snackbar');
+        console.error(err);
+        this.showMessage('Error de conexión', 'error-snackbar');
       }
     );
+  
   }
 
 
-  openFormDialog(providerModel?: ProviderModel) {
+  openFormDialog(teacherModel?: UserModel) {
     this.dialog.open(FormProviderComponent, {
       disableClose: true,
       width: 'auto',
       height: 'auto',
       data: {
-        providerData: providerModel
+        groups:this.Groups,
+        userData: teacherModel
       },
     }).afterClosed().subscribe(result => {
       if (result === undefined) {

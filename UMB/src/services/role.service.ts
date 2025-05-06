@@ -10,10 +10,10 @@ export class RoleServices {
 
   constructor(private http: HttpClient) { }
 
-  private basePath = '/api/roles';
+  private basePath = '/api/users';
 
     getAll(){
-    return this.http.get(`${environment.host}${this.basePath}/getAll/`)
+    return this.http.get(`${environment.host}${this.basePath}/getGroups`)
   }
 
 }

@@ -10,6 +10,7 @@ import { ReceptionShipmentsComponent } from 'src/screens/reception-shipments/rec
 import { UserListComponent } from 'src/screens/catalogs/users/user-list/user-list.component';
 import { ListProviderComponent } from 'src/screens/catalogs/providers/list-provider/list-provider.component';
 import { RegisterPalletComponent } from 'src/screens/register-pallet/register-pallet.component';
+import { RegisterAttendanceComponent } from 'src/screens/register-attendance/register-attendance.component';
 const routes: Routes = [
   { path: '' , component: MainComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -25,9 +26,10 @@ const routes: Routes = [
       {path:'horario',component:RegisterPalletComponent},
       { path: 'catalogos' , component: BoardCatalogosComponent},
       { path: 'reportes' , component: BoardReportComponent},
+      { path: 'adminStudent' , component: RegisterAttendanceComponent},
          // Catalogs
          { path: 'catalogos/users', component: UserListComponent},
-         { path: 'catalogos/provedores', component: ListProviderComponent},
+         { path: 'catalogos/profesores', component: ListProviderComponent},
 
 
     ], canActivate: [ AuthorizatedGuard ]

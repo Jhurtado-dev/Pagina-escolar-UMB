@@ -23,10 +23,8 @@ export class MainBoardComponent implements OnInit {
   fecha;
 
   fillerNav = [
-    { icon: 'nature', name: 'Calificaciones', route: 'home' },
-    { icon: 'nature', name: 'Asistencias', route: 'asistencias' },
-    { icon: 'assessment', name: 'Horario', route: 'horario' },
-    { icon: 'menu_book', name: 'Catálogos', route: 'catalogos' },
+    { icon: 'nature', name: 'Gestion de alumnos', route: 'adminStudent' },
+    { icon: 'menu_book', name: 'Catálogos', route: 'catalogos' }
   ];
 
   fillerNavS = [
@@ -34,10 +32,7 @@ export class MainBoardComponent implements OnInit {
     { icon: 'assessment', name: 'Horario', route: 'horario' },
   ];
   fillerNavP = [
-    { icon: 'nature', name: 'Calificaciones', route: 'home' },
-    { icon: 'nature', name: 'Asistencias', route: 'asistencias' },
-    { icon: 'assessment', name: 'Horario', route: 'horario' },
-    { icon: 'menu_book', name: 'Catálogos', route: 'catalogos' },
+    { icon: 'nature', name: 'Administrar alumnos', route: 'adminStudent' }
   ];
  
   constructor(
@@ -78,6 +73,7 @@ export class MainBoardComponent implements OnInit {
   goBack() {
     const arrayRouteName = this.router.url.split('/');
     let linkRoute = 'emicelio/';
+console.log(arrayRouteName.length);
 
     switch (arrayRouteName.length) {
       case 4: linkRoute += arrayRouteName[2];
@@ -143,10 +139,12 @@ export class MainBoardComponent implements OnInit {
         case route.includes('horario'): this.viewRoute = 'Horario';
         break;
         
-      case route.includes('catalogos'): this.viewRoute = 'Alumnos';
+      case route.includes('catalogos'): this.viewRoute = 'Catálogos';
         break;
 
       case route.includes('reportes'): this.viewRoute = 'Horario de clases';
+        break;
+        case route.includes('adminStudent'): this.viewRoute = 'Gestion de Alumnos';
         break;
     }
   }

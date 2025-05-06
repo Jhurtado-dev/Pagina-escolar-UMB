@@ -1,0 +1,63 @@
+<div fxLayout="column" style="padding: 1rem;">
+
+    <div fxLayout="row" fxLayoutAlign="start center">
+       
+    </div>
+</div><div fxLayout="column" style="padding: 1rem;">
+
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column">
+            <h3 class="style-title-child-page">{{title}} usuario</h3>
+        </div>
+    </div>
+
+    <form [formGroup]="userForm">
+
+       
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+            <div fxFlex="50">
+                <span>Nombre completo</span>
+            </div>
+            <mat-form-field fxFlex="45">
+                <input matInput [disabled]="isDisabled" autocomplete="off" type="text" formControlName="name">
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+            <div fxFlex="50">
+                <span>Asistencias</span>
+            </div>
+            <mat-form-field fxFlex="45">
+                <input matInput autocomplete="off" type="number" formControlName="attendance">
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="50px">
+            <div fxFlex="50">
+                <span>Calificacion</span>
+            </div>
+            <mat-form-field fxFlex="45">
+                <input matInput autocomplete="off" type="number"formControlName="score">
+            </mat-form-field>
+        </div>
+
+        
+        
+    </form>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <div>
+            <button mat-raised-button class="style-button-cancel" fxFlex (click)="dialogRef.close('cancel')">
+        Cancelar
+      </button>
+        </div>
+        <div>
+            <!-- <button mat-raised-button (click)="addOrUpdate()" class="style-raised-button" fxFlex [disabled]="userForm.invalid || domainValidator == false || selectedPlants.length === 0 || plantDefautlFormContrl.value === ''">
+                {{this.data.userData !== undefined ? 'Actualizar' : 'Guardar' }}
+            </button> -->
+            <button mat-raised-button class="style-raised-button" (click)="updateScoreAndAttendance()">
+                {{this.data.userData !== undefined ? 'Actualizar' : 'Guardar' }}
+            </button>
+        </div>
+    </div>
+</div>
